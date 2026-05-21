@@ -6,28 +6,28 @@ dotenv.config();
 
 // Create Discord client
 const client = new Client({
-	shards: 'auto',
-	partials: [
-		Partials.Message,
-		Partials.Channel,
-		Partials.Reaction,
-		Partials.GuildMember,
-		Partials.User,
-	],
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.GuildMembers,
-		GatewayIntentBits.GuildModeration,
-		GatewayIntentBits.GuildPresences,
-		GatewayIntentBits.GuildMessageReactions,
-		GatewayIntentBits.DirectMessages,
-		GatewayIntentBits.GuildVoiceStates,
-		GatewayIntentBits.MessageContent,
-	],
-	allowedMentions: {
-		parse: ['users', 'roles', 'everyone'],
-	},
+  shards: 'auto',
+  partials: [
+    Partials.Message,
+    Partials.Channel,
+    Partials.Reaction,
+    Partials.GuildMember,
+    Partials.User,
+  ],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildModeration,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.MessageContent,
+  ],
+  allowedMentions: {
+    parse: ['users', 'roles', 'everyone'],
+  },
 });
 
 declare global {
@@ -37,10 +37,10 @@ declare global {
 }
 
 function sleepfunc(ms: number) {
-	return new Promise(resolve => {
+  return new Promise(resolve => {
 	  return setTimeout(resolve, ms);
-	});
-  }
+  });
+}
 global.sleep = sleepfunc;
 
 for (const handlerName of readdirSync('./src/handlers').filter((file: string) => file.endsWith('.ts'))) require(`./handlers/${handlerName}`).default(client);

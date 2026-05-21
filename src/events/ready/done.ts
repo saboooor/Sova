@@ -1,6 +1,6 @@
-import { Client } from "discord.js";
+import { Client } from 'discord.js';
 
 export default async (client: Client<true>) =>{
-    logger.info(`Logged in as ${client.user.tag}!`);
-    logger.info(`Guilds: ${client.guilds.cache.size}`)
-}
+  logger.info(`Logged in as ${client.user.tag}!`);
+  logger.info(`Guilds: ${client.guilds.cache.size}`);
+};

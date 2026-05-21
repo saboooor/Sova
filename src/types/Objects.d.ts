@@ -17,7 +17,7 @@ export class Command {
   ownerOnly?: boolean;
   options?: (cmd: SlashCommandBuilder) => void | Promise<void>;
   autoComplete?: (client: Client, interaction: AutocompleteInteraction) => void | Promise<void>;
-  execute: (interaction: CommandInteraction, args: Omit<CommandInteractionOptionResolver<CacheType>, "getMessage" | "getFocused">) => void | Promise<void>;
+  execute: (interaction: CommandInteraction, args: Omit<CommandInteractionOptionResolver<CacheType>, 'getMessage' | 'getFocused'>) => void | Promise<void>;
 }
 
 export class ContextMenuCommand<T extends 'User' | 'Message'> {

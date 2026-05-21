@@ -4,7 +4,10 @@
   "description": "easy to use bot template",
   "main": "src/index.ts",
   "scripts": {
-    "test": "nodemon src/index.ts"
+    "start": "bun src/index.ts",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\""
   },
   "repository": {
     "type": "git",
@@ -22,12 +25,15 @@
   },
   "homepage": "https://github.com/LuminescentDev/ts-Bot-template#readme",
   "devDependencies": {
-    "@types/node": "^20.1.1",
-    "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3",
-    "ts-node": "^10.9.1",
+    "@eslint/js": "^10.0.1",
+    "@types/eslint": "^9.6.1",
+    "@types/node": "^25.9.1",
+    "discord.js": "^14.26.4",
+    "dotenv": "^17.4.2",
+    "eslint": "^10.4.0",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.0.4",
-    "winston": "^3.8.2"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.4",
+    "winston": "^3.19.0"
   }
 }
