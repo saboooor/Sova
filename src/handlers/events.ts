@@ -1,15 +1,15 @@
 import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 
-export default (client: Client) => {
+export default async (client: Client) => {
   const eventFolders = readdirSync('./src/events/');
-  let jsFiles = [];
+  let jsFiles: string[] = [];
   for (const event of eventFolders) {
     jsFiles = readdirSync(`./src/events/${event}`).filter(subfile => subfile.endsWith('.ts'));
     for (const file of jsFiles) {
-      const js = require(`../events/${event}/${file}`).default ?? require(`../events/${event}/${file}`);
+      const eventModule = await import(`../events/${event}/${file}`);
+      const js = eventModule.default ?? eventModule;
       client.on(event, js.bind(null, client));
-      delete require.cache[require.resolve(`../events/${event}/${file}`)];
     }
   }
   logger.info(`${jsFiles.length} event listeners loaded`);

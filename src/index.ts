@@ -43,4 +43,7 @@ function sleepfunc(ms: number) {
 }
 global.sleep = sleepfunc;
 
-for (const handlerName of readdirSync('./src/handlers').filter((file: string) => file.endsWith('.ts'))) require(`./handlers/${handlerName}`).default(client);
+for (const handlerName of readdirSync('./src/handlers').filter((file: string) => file.endsWith('.ts'))) {
+  const handler = await import(`./handlers/${handlerName}`);
+  await handler.default(client);
+}

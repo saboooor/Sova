@@ -7,13 +7,13 @@ const buttons = new Collection<string, Button>();
 
 // Register all buttons
 const buttonFiles = readdirSync('./src/buttons').filter(file => file.endsWith('.ts'));
-buttonFiles.forEach(async file => {
-  let button = require(`../buttons/${file}`);
-  const name = Object.keys(button)[0] as keyof typeof button;
-  button = { name, ...button[name] };
+for (const file of buttonFiles) {
+  const buttonModule = await import(`../buttons/${file}`);
+  const name = Object.keys(buttonModule)[0] as string;
+  const button = { name, ...(buttonModule[name] as Button) };
 
   buttons.set(button.name, button);
-});
+}
 logger.info(`${buttonFiles.length} buttons loaded`);
 
 export default buttons;

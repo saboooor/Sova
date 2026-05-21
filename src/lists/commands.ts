@@ -10,10 +10,10 @@ const slashcommandFolders = readdirSync('./src/commands');
 for (const folder of slashcommandFolders) {
   const slashcommandFiles = readdirSync(`./src/commands/${folder}`).filter(file => file.endsWith('ts'));
   for (const file of slashcommandFiles) {
-    let command = require(`../commands/${folder}/${file}`);
-    const name = Object.keys(command)[0] as keyof typeof command;
+    const commandModule = await import(`../commands/${folder}/${file}`);
+    const name = Object.keys(commandModule)[0] as keyof typeof commandModule;
 
-    command = { name: command.name ?? name, category: folder, ...command[name] };
+    const command = { name: commandModule.name ?? name, category: folder, ...(commandModule[name] as Command) };
     commands.set(command.name, command);
   }
 }
